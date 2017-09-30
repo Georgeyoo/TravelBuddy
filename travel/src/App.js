@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import NavBar from "./components/NavBar";
 import SearchBar from './components/SearchBar';
-import Map from './components/Map';
+import Location from './components/Location';
 
 class App extends Component {
 
@@ -59,13 +59,7 @@ class App extends Component {
         <NavBar />
         <h1> { title } </h1>
         <SearchBar />
-        <Map 
-          isMarkerShown={false} 
-          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-          loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `400px` }} />}
-          mapElement={<div style={{ height: `100%` }} />}
-        />
+        <Location />
 
       </div>
     );
