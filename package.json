@@ -1,24 +1,18 @@
 {
-  "name": "travel",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "google-map-react": "^0.24.0",
-    "google-maps-react": "^1.1.0",
-    "leaflet": "^1.2.0",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-google-map": "^3.1.0",
-    "react-google-maps": "^8.3.2",
-    "react-leaflet": "^1.7.0",
-    "react-materialize": "^1.0.14",
-    "react-scripts": "1.0.14",
-    "yarn": "^1.1.0"
-  },
+  "name": "database",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.15.5",
+    "morgan": "^1.9.0",
+    "pg": "^7.3.0"
   }
 }
