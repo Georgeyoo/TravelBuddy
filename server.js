@@ -1,9 +1,12 @@
-let express = require('express');
-let bodyParser = require('body-parser');
-let pg = require('pg');
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+const pg = require('pg');
 // let morgan = require("morgan");
 
-const PORT = 3000;
+
+// require("./client/public/index");
+const port = process.env.PORT || 3000;
 
 
 // Connect to Postgres db
@@ -62,6 +65,9 @@ pool.connect((err, db, done) => {
 
 let app = express();
 
+// app.set('views', path.join(__dirname, './client/public/index'));
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -77,4 +83,6 @@ app.post("/api/new-location", function(request, response) {
 	console.log(request.body);
 });
 
-app.listen(PORT, () => console.log("Listening on port " + PORT));
+// app.use('/', index);
+
+app.listen(port, () => console.log("Listening on port " + port));
