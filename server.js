@@ -10,7 +10,7 @@ const port = process.env.PORT || 3000;
 
 
 // Connect to Postgres db
-let pool = new pg.Pool({
+const pool = new pg.Pool({
 	port: 5432,
 	password: "e7bd3d778ea19376b6c2c9a0d235bd40cc78422de00598bb1002c872cdc5d8e7",
 	database: "daspvvn2jseqvr",
