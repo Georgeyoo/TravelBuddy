@@ -20,32 +20,6 @@ class App extends Component {
     console.log("Component Mounted!");
   };
 
-  addLocation(event){
-
-    // Prevent form from submitting
-    event.preventDefault();
-
-    let data = {
-      name: this.refs.name.value,
-      city: this.refs.city.value
-    };
-
-    var request = new Request("http://localhost:3000/api/new-location", {
-      method: "POST",
-      headers: new Headers({ "Content-Type": "application/json"}),
-      body: JSON.stringify(data)
-    });
-
-    //xmlhttprequest()
-    fetch(request)
-      .then(function(response) {
-        response.json()
-          .then(function(data) {
-            console.log(data);
-          })
-      })
-  }
-
   searchItems() {
 
   }
