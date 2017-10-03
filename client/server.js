@@ -12,12 +12,10 @@ const port = process.env.PORT || 3000;
 // Connect to Postgres db
 let pool = new pg.Pool({
 	port: 5432,
-	password: "",
-	database: "gusto",
-	// setting max connections
-	max: 10,
-	host: "localhost",
-	user: "george"
+	password: "e7bd3d778ea19376b6c2c9a0d235bd40cc78422de00598bb1002c872cdc5d8e7",
+	database: "daspvvn2jseqvr",
+	host: "ec2-54-235-88-58.compute-1.amazonaws.com",
+	user: "avtoenaofehwbm"
 });
 
 pool.connect((err, db, done) => {
