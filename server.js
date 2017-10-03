@@ -51,6 +51,14 @@ app.use(function(req, res, next) {
 	next();
 });
 
+app.use(function (req, res, next) {
+	if (req.headers['x-forwarded-proto'] === 'https') {
+  		res.redirect('http://' + req.hostname + req.url);
+	} else {
+  		next();
+	}
+});
+
 app.post("/api/new-location", function(request, response) {
 	console.log(request.body);
 });
