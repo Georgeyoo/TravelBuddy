@@ -3,6 +3,8 @@ import './App.css';
 import NavBar from "./components/NavBar";
 import SearchBar from './components/SearchBar';
 import Location from './components/Location';
+import Panel from './components/Panel';
+
 
 class App extends Component {
 
@@ -20,6 +22,32 @@ class App extends Component {
     console.log("Component Mounted!");
   };
 
+  addLocation(event){
+
+    // Prevent form from submitting
+    event.preventDefault();
+
+    let data = {
+      name: this.refs.name.value,
+      city: this.refs.city.value
+    };
+
+    var request = new Request("http://localhost:3000/api/new-location", {
+      method: "POST",
+      headers: new Headers({ "Content-Type": "application/json"}),
+      body: JSON.stringify(data)
+    });
+
+    //xmlhttprequest()
+    fetch(request)
+      .then(function(response) {
+        response.json()
+          .then(function(data) {
+            console.log(data);
+          })
+      })
+  }
+
   searchItems() {
 
   }
@@ -31,9 +59,11 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar />
-        <h1> { title } </h1>
+        <h4> { title } </h4>
         <SearchBar />
         <Location />
+        <h4>My Itinerary</h4>
+        <Panel />
 
       </div>
     );

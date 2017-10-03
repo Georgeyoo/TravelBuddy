@@ -47,13 +47,45 @@ class SearchBar extends Component {
   render() {
 
     return (
-      <div className="search-bar">
-        <form>
-          <input type="text" ref="name" placeholder="Starting Location..." />
-          <button onClick={ this.addLocation.bind(this) }> Add Location! </button>
-        </form>
+      <div className="row valign-wrapper search-bar">
+          <form className="col s10">
+            <div className="row">
+              <div className="input-field col s9">
+                <input id="disabled" type="text" className="validate"/ >
+                <label for="street">Street</label>
+              </div>
+            </div>
+            <div className="row">
+              <div className="input-field col s5">
+                <input id="city" type="text" className="validate"/ >
+                <label for="city">City</label>
+              </div>
+              <div className="input-field col s2">
+                <input id="state" type="text" className="validate"/ >
+                <label for="state">State</label>
+              </div>
+              <div className="input-field col s2">
+                <input id="zip" type="text" className="validate"/ >
+                <label for="zip">ZIP Code</label>
+              </div>
+            </div>
+            <div className="row center-align col s9">
+              <a class="waves-effect waves-light btn red">Find Places</a>
+              <a class="waves-effect waves-teal btn-flat">Use my location</a>
+            </div>
+          </form>
+        </div>
 
-      </div>
+
+
+
+      // <div className="search-bar">
+      //   <form>
+      //     <input type="text" ref="name" placeholder="Starting Location..." />
+      //     <button onClick={ this.addLocation.bind(this) }> Add Location! </button>
+      //   </form>
+
+      // </div>
     );
   }
 }
