@@ -55,39 +55,29 @@ class SearchBar extends Component {
                 <label for="street">Street</label>
               </div>
             </div>
-            <div className="row">
-              <div className="input-field col s5">
-                <input id="city" type="text" className="validate"/ >
-                <label for="city">City</label>
-              </div>
-              <div className="input-field col s2">
-                <input id="state" type="text" className="validate"/ >
-                <label for="state">State</label>
-              </div>
-              <div className="input-field col s2">
-                <input id="zip" type="text" className="validate"/ >
-                <label for="zip">ZIP Code</label>
-              </div>
-            </div>
             <div className="row center-align col s9">
-              <a className="waves-effect waves-light btn red">Find Places</a>
+              <a className="waves-effect waves-light btn red" onClick={ this.addLocation.bind(this) }>Find Places</a>
               <a className="waves-effect waves-teal btn-flat">Use my location</a>
             </div>
           </form>
         </div>
-
-
-
-
-      // <div className="search-bar">
-      //   <form>
-      //     <input type="text" ref="name" placeholder="Starting Location..." />
-      //     <button onClick={ this.addLocation.bind(this) }> Add Location! </button>
-      //   </form>
-
-      // </div>
     );
   }
 }
 
 export default SearchBar;
+
+            // <div className="row">
+            //   <div className="input-field col s5">
+            //     <input id="city" type="text" className="validate"/ >
+            //     <label for="city">City</label>
+            //   </div>
+            //   <div className="input-field col s2">
+            //     <input id="state" type="text" className="validate"/ >
+            //     <label for="state">State</label>
+            //   </div>
+            //   <div className="input-field col s2">
+            //     <input id="zip" type="text" className="validate"/ >
+            //     <label for="zip">ZIP Code</label>
+            //   </div>
+            // </div>
