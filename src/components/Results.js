@@ -3,13 +3,13 @@ import React, { Component } from 'react';
 class Results extends Component {
 	render() {
 		return (
-			<ul class="collection">
-				<li class="collection-item"><div>Golden Gate Park<a href="#!" class="secondary-content"><i class="material-icons">add</i></a></div></li>
-				<li class="collection-item"><div>Museum of Modern Art<a href="#!" class="secondary-content"><i class="material-icons">add</i></a></div></li>
-				<li class="collection-item"><div>Exploratorium<a href="#!" class="secondary-content"><i class="material-icons">add</i></a></div></li>
-				<li class="collection-item"><div>Golden Gate Park<a href="#!" class="secondary-content"><i class="material-icons">add</i></a></div></li>
-				<li class="collection-item"><div>Museum of Modern Art<a href="#!" class="secondary-content"><i class="material-icons">add</i></a></div></li>
-				<li class="collection-item"><div>Exploratorium<a href="#!" class="secondary-content"><i class="material-icons">add</i></a></div></li>
+			<ul className="collection">
+				<li className="collection-item"><div>Golden Gate Park<a href="#!" className="secondary-content"><i className="material-icons">add</i></a></div></li>
+				<li className="collection-item"><div>Museum of Modern Art<a href="#!" className="secondary-content"><i className="material-icons">add</i></a></div></li>
+				<li className="collection-item"><div>Exploratorium<a href="#!" className="secondary-content"><i className="material-icons">add</i></a></div></li>
+				<li className="collection-item"><div>Golden Gate Park<a href="#!" className="secondary-content"><i className="material-icons">add</i></a></div></li>
+				<li className="collection-item"><div>Museum of Modern Art<a href="#!" className="secondary-content"><i className="material-icons">add</i></a></div></li>
+				<li className="collection-item"><div>Exploratorium<a href="#!" className="secondary-content"><i className="material-icons">add</i></a></div></li>
 			</ul>  
 		)
 	}

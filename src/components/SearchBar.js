@@ -70,8 +70,8 @@ class SearchBar extends Component {
               </div>
             </div>
             <div className="row center-align col s9">
-              <a class="waves-effect waves-light btn red">Find Places</a>
-              <a class="waves-effect waves-teal btn-flat">Use my location</a>
+              <a className="waves-effect waves-light btn red">Find Places</a>
+              <a className="waves-effect waves-teal btn-flat">Use my location</a>
             </div>
           </form>
         </div>
