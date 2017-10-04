@@ -4,6 +4,8 @@ import Map from './Map';
 import Results from './Results';
 
 class Location extends Component {
+
+
 	render() {
 		return (
 			<div className="row">
@@ -11,7 +13,7 @@ class Location extends Component {
 					<h4>Map</h4>
 					<Map 
 						isMarkerShown={false} 
-						googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+						googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0jSSeKVs-JuEd77jvV2Gi8Ndc89czfoI"
 						loadingElement={<div style={{ height: `100%` }} />}
 						containerElement={<div style={{ height: `450px` }} />}
 						mapElement={<div style={{ height: `100%`, width: `100%` }} />}

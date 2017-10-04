@@ -2,12 +2,12 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const pg = require('pg');
-// let morgan = require("morgan");
 
+let app = express();
 
-// require("./client/public/index");
 const port = process.env.PORT || 3000;
 
+require('./db/routes.js')(app);
 
 // Connect to Postgres db
 const pool = new pg.Pool({
@@ -34,8 +34,6 @@ pool.connect((err, db, done) => {
 	}
 })
 
-
-let app = express();
 
 // app.set('views', path.join(__dirname, './client/public/index'));
 
