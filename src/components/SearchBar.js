@@ -29,7 +29,7 @@ class SearchBar extends Component {
   
   // AJAX CALLS GO HERE
   componentDidMount() {
-    
+    console.log("Component Mounted!");
   };
 
   addLocation(event){

@@ -1,41 +1,31 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const pg = require('pg');
+const { Client } = require('pg');
+
 
 let app = express();
 
 const port = process.env.PORT || 3000;
 
-require('./db/routes.js')(app);
 
-// Connect to Postgres db
-const pool = new pg.Pool({
-	port: 5432,
-	password: "e7bd3d778ea19376b6c2c9a0d235bd40cc78422de00598bb1002c872cdc5d8e7",
-	database: "daspvvn2jseqvr",
-	host: "ec2-54-235-88-58.compute-1.amazonaws.com",
-	user: "avtoenaofehwbm"
+// Connect to Heroku Postgres DB
+const client = new Client({
+	connectionString: process.env.DATABASE_URL,
+	ssl: false,
 });
 
-pool.connect((err, db, done) => {
-	if(err) {
-		return console.log(err);
-	} else {
 
-		db.query("SELECT * FROM locations;", (err, table) => {
-			if(err) {
-				return console.log(err);
-			} else {
-				console.log(table.rows[0]);
-				db.end();
-			}
-		})
+
+client.connect();
+
+client.query('SELECT * FROM locations;', (err, res) => {
+	if (err) throw err;
+	for (let row of res.rows) {
+		console.log(JSON.stringify(row));
 	}
+	client.end();
 })
-
-
-// app.set('views', path.join(__dirname, './client/public/index'));
 
 
 app.use(bodyParser.json());
@@ -57,9 +47,6 @@ app.use(function (req, res, next) {
 	}
 });
 
-app.post("/api/new-location", function(request, response) {
-	console.log(request.body);
-});
 
 // app.use('/', index);
 
