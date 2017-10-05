@@ -1,15 +1,32 @@
 import React, { Component } from 'react';
+import PlacesAutocomplete from 'react-places-autocomplete';
+import { geocodeByAddress, geocodeByPlaceId, getLatLng } from 'react-places-autocomplete';
+
 
 class SearchBar extends Component {
 
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     locations: []
+  //   }
+  // }
+
   constructor(props) {
-    super(props);
-    this.state = {
-      locations: []
-    }
+    super(props)
+    this.state = { address: 'San Francisco, CA' }
+    this.onChange = (address) => this.setState({ address })
   }
 
-
+  handleFormSubmit = (event) => {
+    event.preventDefault()
+ 
+    geocodeByAddress(this.state.address)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => console.log('Success', latLng))
+      .catch(error => console.error('Error', error))
+  }
+  
   // AJAX CALLS GO HERE
   componentDidMount() {
     
@@ -40,24 +57,21 @@ class SearchBar extends Component {
       })
   }
 
-  searchItems() {
-
-  }
-
   render() {
+    const inputProps = {
+      value: this.state.address,
+      onChange: this.onChange,
+    }
 
     return (
       <div className="row valign-wrapper search-bar">
-          <form className="col s10">
-            <div className="row">
-              <div className="input-field col s9">
-                <input id="disabled" type="text" className="validate"/ >
-                <label for="street">Street</label>
-              </div>
+          <form className="col s10" onSubmit={this.handleFormSubmit}>
+            <div className="row input-field col s9">
+                <PlacesAutocomplete inputProps={inputProps} />
             </div>
             <div className="row center-align col s9">
               <a className="waves-effect waves-light btn red" onClick={ this.addLocation.bind(this) }>Find Places</a>
-              <a className="waves-effect waves-teal btn-flat">Use my location</a>
+              <a className="waves-effect waves-teal btn-flat">Use my current location</a>
             </div>
           </form>
         </div>
@@ -66,18 +80,3 @@ class SearchBar extends Component {
 }
 
 export default SearchBar;
-
-            // <div className="row">
-            //   <div className="input-field col s5">
-            //     <input id="city" type="text" className="validate"/ >
-            //     <label for="city">City</label>
-            //   </div>
-            //   <div className="input-field col s2">
-            //     <input id="state" type="text" className="validate"/ >
-            //     <label for="state">State</label>
-            //   </div>
-            //   <div className="input-field col s2">
-            //     <input id="zip" type="text" className="validate"/ >
-            //     <label for="zip">ZIP Code</label>
-            //   </div>
-            // </div>
