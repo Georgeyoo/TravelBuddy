@@ -5,7 +5,6 @@ import Results from './Results';
 
 class Location extends Component {
 
-
 	render() {
 		return (
 			<div className="row">
