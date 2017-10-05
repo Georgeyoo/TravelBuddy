@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import PlacesAutocomplete from 'react-places-autocomplete';
 import { geocodeByAddress, geocodeByPlaceId, getLatLng } from 'react-places-autocomplete';
 
 
 class SearchBar extends Component {
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     locations: []
-  //   }
-  // }
-
   constructor(props) {
-    super(props)
-    this.state = { address: 'San Francisco, CA' }
+    super(props);
+    this.state = { 
+      address: 'San Francisco, CA',
+      locations: []
+    }
     this.onChange = (address) => this.setState({ address })
   }
 
@@ -32,8 +29,13 @@ class SearchBar extends Component {
     console.log("Component Mounted!");
   };
 
-  addLocation(event){
+  getInitialState() {
+    return {
+      locations: []
+    }
+  }
 
+  findPlaces(event){
     // Prevent form from submitting
     event.preventDefault();
 
@@ -41,8 +43,8 @@ class SearchBar extends Component {
       name: this.refs.name.value
     };
 
-    var request = new Request("http://localhost:3000/api/new-location", {
-      method: "POST",
+    var request = new Request(connectionString + "/api/search", {
+      method: "GET",
       headers: new Headers({ "Content-Type": "application/json"}),
       body: JSON.stringify(data)
     });
@@ -70,7 +72,7 @@ class SearchBar extends Component {
                 <PlacesAutocomplete inputProps={inputProps} />
             </div>
             <div className="row center-align col s9">
-              <a className="waves-effect waves-light btn red" onClick={ this.addLocation.bind(this) }>Find Places</a>
+              <a className="waves-effect waves-light btn red" onClick={ this.findPlaces.bind(this) }>Find Places</a>
               <a className="waves-effect waves-teal btn-flat">Use my current location</a>
             </div>
           </form>

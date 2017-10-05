@@ -1,15 +1,34 @@
 import React, { Component } from 'react';
 
 class Results extends Component {
+
+	constructor(props){
+		super(props);
+		this.state = {
+			locations: []
+		}
+	}
+
+	// AJAX Calls
+	componentDidMount() {
+		console.log('Results Mounted!');
+	}
+
+	addLocation(event) {
+		event.preventDefault();
+		
+	}
+
+
 	render() {
 		return (
 			<ul className="collection">
 				<li className="collection-item"><div>Golden Gate Park<a href="#!" className="secondary-content"><i className="material-icons">add</i></a></div></li>
-				<li className="collection-item"><div>Museum of Modern Art<a href="#!" className="secondary-content"><i className="material-icons">add</i></a></div></li>
-				<li className="collection-item"><div>Exploratorium<a href="#!" className="secondary-content"><i className="material-icons">add</i></a></div></li>
-				<li className="collection-item"><div>Golden Gate Park<a href="#!" className="secondary-content"><i className="material-icons">add</i></a></div></li>
-				<li className="collection-item"><div>Museum of Modern Art<a href="#!" className="secondary-content"><i className="material-icons">add</i></a></div></li>
-				<li className="collection-item"><div>Exploratorium<a href="#!" className="secondary-content"><i className="material-icons">add</i></a></div></li>
+				// <li className="collection-item"><div>Museum of Modern Art<a href="#!" className="secondary-content"><i className="material-icons">add</i></a></div></li>
+				// <li className="collection-item"><div>Exploratorium<a href="#!" className="secondary-content"><i className="material-icons">add</i></a></div></li>
+				// <li className="collection-item"><div>Golden Gate Park<a href="#!" className="secondary-content"><i className="material-icons">add</i></a></div></li>
+				// <li className="collection-item"><div>Museum of Modern Art<a href="#!" className="secondary-content"><i className="material-icons">add</i></a></div></li>
+				// <li className="collection-item"><div>Exploratorium<a href="#!" className="secondary-content"><i className="material-icons">add</i></a></div></li>
 			</ul>  
 		)
 	}
