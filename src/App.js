@@ -61,9 +61,6 @@ class App extends Component {
         <NavBar />
         <h4> { title } </h4>
         <SearchBar />
-        <Location />
-        <h4>My Itinerary</h4>
-        <Panel />
 
       </div>
     );

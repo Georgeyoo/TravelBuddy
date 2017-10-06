@@ -1,66 +1,81 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const pg = require('pg');
+const mongoose = require('mongoose');
 
-let app = express();
+const Locations = require("./models/Locations");
 
-const port = process.env.PORT || 3000;
-
-require('./db/routes.js')(app);
-
-// Connect to Postgres db
-const pool = new pg.Pool({
-	port: 5432,
-	password: "e7bd3d778ea19376b6c2c9a0d235bd40cc78422de00598bb1002c872cdc5d8e7",
-	database: "daspvvn2jseqvr",
-	host: "ec2-54-235-88-58.compute-1.amazonaws.com",
-	user: "avtoenaofehwbm"
-});
-
-pool.connect((err, db, done) => {
-	if(err) {
-		return console.log(err);
-	} else {
-
-		db.query("SELECT * FROM locations;", (err, table) => {
-			if(err) {
-				return console.log(err);
-			} else {
-				console.log(table.rows[0]);
-				db.end();
-			}
-		})
-	}
-})
-
-
-// app.set('views', path.join(__dirname, './client/public/index'));
-
+var app = express();
+var port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.text());
+app.use(bodyParser.json({type:'application/vnd.api+json'}));
 
-// What is Cors?
-// Allows the React component to send API requests to the PostgreSQL server]]
-app.use(function(req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-Width, Content-Type, Accept");
-	next();
+app.use(express.static('./public'));
+
+var link = 'mongodb://heroku_dmww4l6s:p582cfm7fev28i0br28mrm4ve9@ds111535.mlab.com:11535/heroku_dmww4l6s';
+//Local link
+// var link = 'mongodb://localhost/locations';
+
+mongoose.connect(link);
+var db = mongoose.connection;
+
+db.on('error', function (err) {
+  console.log('Mongoose Error: ', err);
 });
 
-app.use(function (req, res, next) {
-	if (req.headers['x-forwarded-proto'] === 'https') {
-  		res.redirect('http://' + req.hostname + req.url);
-	} else {
-  		next();
-	}
+db.once('open', function () {
+  console.log('Mongoose connection successful.');
 });
 
-app.post("/api/new-location", function(request, response) {
-	console.log(request.body);
+app.get('/', function(req, res){
+  res.sendFile('./public/index.html');
+})
+
+app.get('/api/saved', function(req, res) {
+
+  Locations.find({})
+    .exec(function(err, doc){
+
+      if(err){
+        console.log(err);
+      }
+      else {
+        res.send(doc);
+      }
+    })
 });
 
-// app.use('/', index);
+app.post('/api/saved', function(req, res){
+  var newLocations = new Locations(req.body);
 
-app.listen(port, () => console.log("Listening on port " + port));
+  var title = req.body.title;
+  var date = req.body.date;
+  var url = req.body.url;
+
+  newLocations.save(function(err, doc){
+    if(err){
+      console.log(err);
+    } else {
+      res.send(doc._id);
+    }
+  });
+});
+
+app.delete('/api/saved/', function(req, res){
+
+  var url = req.param('url');
+
+  Locations.find({"url": url}).remove().exec(function(err, data){
+    if(err){
+      console.log(err);
+    }
+    else {
+      res.send("Deleted");
+    }
+  });
+});
+
+app.listen(port, () => console.log("Listening on port: " + port));

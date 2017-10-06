@@ -26,7 +26,14 @@
   
   
   <!-- Google Maps API CDN -->
-<!--   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0jSSeKVs-JuEd77jvV2Gi8Ndc89czfoI"></script> -->
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0jSSeKVs-JuEd77jvV2Gi8Ndc89czfoI"></script> -->
+
+  <style>
+      #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
 
     <title>React App</title>
   </head>
@@ -47,12 +54,32 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
 
+ 
+     <div id="map"></div>
+    
     <!--Import jQuery before materialize.js-->
       <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.js"></script>
     
-      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0jSSeKVs-JuEd77jvV2Gi8Ndc89czfoI&libraries=places"></script>
+      <script>
+        function initMap() {
+          var uluru = {lat: 37.791298, lng: -122.393743};
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: uluru
+          });
+          var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+          });
+        }
+      </script>
+              
+      <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0jSSeKVs-JuEd77jvV2Gi8Ndc89czfoI&callback=initMap&libraries=places">
+      </script>
+      <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0jSSeKVs-JuEd77jvV2Gi8Ndc89czfoI&libraries=places"></script> -->
 
   </body>
 </html>
